@@ -11,11 +11,11 @@ var calc = function calc(distance) {
   if (Number.isNaN(output)) {
     return '<span style="color:red;">zadejte prosím číslo ( ͡° ͜ʖ ͡°)</span>';
   } else {
-    return output;
+    return output + ' N/kg';
   }
 };
 
-var event = new Event('input', {
+var myEvent = new Event('input', {
   bubbles: true,
   cancelable: true
 });
@@ -23,5 +23,5 @@ Array.from(inputs).map(function (input) {
   input.addEventListener('input', function (e) {
     e.target.nextSibling.nextSibling.innerHTML = calc(e.target.innerText);
   });
-  input.dispatchEvent(event);
+  input.dispatchEvent(myEvent);
 });
