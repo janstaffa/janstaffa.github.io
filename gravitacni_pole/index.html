@@ -2,9 +2,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>Intenzita gravitačního pole</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intenzita gravitačního pole</title>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js" defer></script>
     <style>
         * {
             margin: 0;
@@ -15,6 +17,12 @@
 
         body {
             padding: 10px;
+            width: auto;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
         }
 
         .table {
@@ -30,70 +38,213 @@
             font-weight: bold;
             padding: 0 5px;
         }
+
+        .wrap {
+            background-color: transparent;
+            width: 100%;
+            height: fit-content;
+            position: relative;
+            overflow-x: auto;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid black;
+        }
+
+        .interactive {
+            width: 520000px !important;
+            max-width: 520000px;
+            display: block;
+            float: left;
+            height: 700px;
+            position: relative;
+            background-color: rgb(3, 2, 15);
+            z-index: 0;
+        }
+
+        .flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .right,
+        .left {
+            min-width: 700px;
+            width: 50%;
+            height: 330px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .draggable {
+            position: absolute;
+            top: 150;
+            left: 300;
+            z-index: 1000;
+            cursor: move;
+        }
+
+        #svg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .obj {
+            z-index: 1000;
+            user-select: none;
+        }
+
+        #line-path {
+            stroke: red;
+            stroke-width: 2px;
+            stroke-dasharray: 8px;
+        }
+
+        .caption {
+            width: 100%;
+            height: 30px;
+            margin-bottom: -40px;
+            margin-right: 4px;
+            z-index: 1000;
+            background-color: transparent;
+        }
+
+        .caption div {
+            margin-top: 3px;
+            padding: 5px;
+            background-color: white;
+            width: fit-content;
+            float: right;
+            font-size: 20px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .caption div span {
+            width: fit-content;
+        }
+
+        .control {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .control ion-icon {
+            font-size: 30px;
+            margin: 0 2px;
+            cursor: pointer;
+        }
     </style>
     <script src="./lib/index.js" defer></script>
 </head>
 
 <body>
     <h1>Intenzita gravitačního pole Slunce</h1>
-    <table class="table">
-        <tr>
-            <td></td>
-            <td><b>Vzdálenost od středu Slunce (km)</b></td>
-            <td><b>Intenzita gravitačního pole Slunce (N/kg)</b></td>
-        </tr>
-        <tr>
-            <td>Povrch</td>
-            <td class="input" contenteditable="true">696010</td>
-            <td class="output"></td>
-        </tr>
-        <tr>
-            <td>Merkur</td>
-            <td class="input" contenteditable="true">57910000</td>
-            <td class="output"></td>
-        </tr>
-        <tr>
-            <td>Venuše</td>
-            <td class="input" contenteditable="true">108200000</td>
-            <td class="output"></td>
-        </tr>
-        <tr>
-            <td>Země</td>
-            <td class="input" contenteditable="true">149600000</td>
-            <td class="output"></td>
-        </tr>
-        <tr>
-            <td>Mars</td>
-            <td class="input" contenteditable="true">227900000</td>
-            <td class="output"></td>
-        </tr>
-        <tr>
-            <td>Jupiter</td>
-            <td class="input" contenteditable="true">778300000</td>
-            <td class="output"></td>
-        </tr>
-        <tr>
-            <td>Saturn</td>
-            <td class="input" contenteditable="true">1429200000</td>
-            <td class="output"></td>
-        </tr>
-        <tr>
-            <td>Uran</td>
-            <td class="input" contenteditable="true">2875000000</td>
-            <td class="output"></td>
-        </tr>
-        <tr>
-            <td>Neptun</td>
-            <td class="input" contenteditable="true">4504000000</td>
-            <td class="output"></td>
-        </tr>
-        <tr>
-            <td>(vlastní)</td>
-            <td class="input" contenteditable="true"></td>
-            <td class="output"></td>
-        </tr>
-    </table>
+    <div class="flex">
+        <div class="left">
+            <table class="table">
+                <tr>
+                    <td></td>
+                    <td><b>Vzdálenost od středu Slunce (km)</b></td>
+                    <td><b>Intenzita gravitačního pole Slunce (N/kg)</b></td>
+                </tr>
+                <tr>
+                    <td>Povrch</td>
+                    <td class="input" contenteditable="true">696010</td>
+                    <td class="output"></td>
+                </tr>
+                <tr>
+                    <td>Merkur</td>
+                    <td class="input" contenteditable="true">57910000</td>
+                    <td class="output"></td>
+                </tr>
+                <tr>
+                    <td>Venuše</td>
+                    <td class="input" contenteditable="true">108200000</td>
+                    <td class="output"></td>
+                </tr>
+                <tr>
+                    <td>Země</td>
+                    <td class="input" contenteditable="true">149600000</td>
+                    <td class="output"></td>
+                </tr>
+                <tr>
+                    <td>Mars</td>
+                    <td class="input" contenteditable="true">227900000</td>
+                    <td class="output"></td>
+                </tr>
+                <tr>
+                    <td>Jupiter</td>
+                    <td class="input" contenteditable="true">778300000</td>
+                    <td class="output"></td>
+                </tr>
+                <tr>
+                    <td>Saturn</td>
+                    <td class="input" contenteditable="true">1429200000</td>
+                    <td class="output"></td>
+                </tr>
+                <tr>
+                    <td>Uran</td>
+                    <td class="input" contenteditable="true">2875000000</td>
+                    <td class="output"></td>
+                </tr>
+                <tr>
+                    <td>Neptun</td>
+                    <td class="input" contenteditable="true">4504000000</td>
+                    <td class="output"></td>
+                </tr>
+                <tr>
+                    <td>(vlastní)</td>
+                    <td class="input" contenteditable="true"></td>
+                    <td class="output"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="right">
+
+        </div>
+        <div class="caption">
+            <div>
+                <div class="control">
+                    <ion-icon name="add-circle-outline" id="zoom"></ion-icon>
+                    <ion-icon name="remove-circle-outline" id="unzoom"></ion-icon>
+                </div>
+                <div>
+                    Vzdálenost:&nbsp; <span id="distance"></span> / Intenzita g. pole:&nbsp; <span
+                        id="intenzity"></span>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="interactive">
+                <img src="../assets/sun.png" height="160" width="160" id="sun" class="obj" />
+                <img src="../assets/earth.png" height="40" width="40" class="draggable obj" />
+                <svg id="svg">
+                    <line id="line-path" />
+                    <circle cx="80" cy="80" r="6663" stroke="white" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="12407" stroke="white" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="17186" stroke="white" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="26193" stroke="white" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="89380" stroke="white" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="160838" stroke="white" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="321677" stroke="white" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="516981" stroke="white" stroke-width="2" fill="transparent" />
+                </svg>
+            </div>
+        </div>
+    </div>
     <em>&copy;Copyright Jan Štaffa 2021</em>
+
 </body>
 
 </html>
