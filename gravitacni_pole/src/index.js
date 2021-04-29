@@ -140,9 +140,6 @@ const rerenderOrbits = () => {
     sun.style.height = 160 / ratio;
     sun.style.marginTop = 80 - 160 / ratio / 2;
     sun.style.marginLeft = 80 - 160 / ratio / 2;
-
-    // earth.style.top = el.offsetTop - pos2 + 'px';
-    // earth.style.left = el.offsetLeft - pos1 + 'px';
   } else {
     sun.style.width = 160;
     sun.style.height = 160;
