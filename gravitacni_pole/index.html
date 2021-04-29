@@ -16,9 +16,9 @@
         }
 
         body {
-            padding: 10px;
             width: auto;
             overflow-x: hidden;
+            background-color: whitesmoke;
         }
 
         h1 {
@@ -83,10 +83,13 @@
 
         .draggable {
             position: absolute;
-            top: 150;
-            left: 300;
             z-index: 1000;
             cursor: move;
+        }
+
+        #earth {
+            top: 238;
+            left: 1162;
         }
 
         #svg {
@@ -116,6 +119,7 @@
             margin-right: 4px;
             z-index: 1000;
             background-color: transparent;
+            user-select: none;
         }
 
         .caption div {
@@ -143,6 +147,15 @@
             font-size: 30px;
             margin: 0 2px;
             cursor: pointer;
+        }
+
+        #reset,
+        #onetoone {
+            margin-right: 5px;
+        }
+
+        #onetoone {
+            font-size: 22px;
         }
     </style>
     <script src="./lib/index.js" defer></script>
@@ -216,8 +229,10 @@
         <div class="caption">
             <div>
                 <div class="control">
-                    <ion-icon name="add-circle-outline" id="zoom"></ion-icon>
-                    <ion-icon name="remove-circle-outline" id="unzoom"></ion-icon>
+                    <ion-icon name="sunny-outline" id="onetoone" title="One to one sun scale"></ion-icon>
+                    <ion-icon name="refresh-circle-outline" id="reset" title="Reset playground"></ion-icon>
+                    <ion-icon name="add-circle-outline" id="zoom" title="Zoom in"></ion-icon>
+                    <ion-icon name="remove-circle-outline" id="unzoom" title="Zoom out"></ion-icon>
                 </div>
                 <div>
                     Vzdálenost:&nbsp; <span id="distance"></span> / Intenzita g. pole:&nbsp; <span
@@ -230,7 +245,7 @@
                 <img src="https://janstaffa.github.io/gravitacni_pole/assets/sun.png" height="160" width="160" id="sun"
                     class="obj" />
                 <img src="https://janstaffa.github.io/gravitacni_pole/assets/earth.png" height="40" width="40"
-                    class="draggable obj" />
+                    class="draggable obj" id="earth" />
                 <svg id="svg">
                     <line id="line-path" />
                     <circle cx="80" cy="80" r="6663" stroke="white" stroke-width="2" fill="transparent" />
@@ -245,8 +260,6 @@
             </div>
         </div>
     </div>
-    <em>&copy;Copyright Jan Štaffa 2021</em>
-
 </body>
 
 </html>

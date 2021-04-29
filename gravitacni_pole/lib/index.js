@@ -31,9 +31,10 @@ Array.from(inputs).map(function (input) {
   });
   input.dispatchEvent(myEvent);
 });
-var ratio = 1;
+var ratio = 15.4;
 var RATIO_STEP = 0.6;
-var draggable = document.querySelector('.draggable');
+var realSunScale = false;
+var draggable = document.querySelector('#earth');
 var distanceDisplay = document.querySelector('#distance');
 var intenzityDisplay = document.querySelector('#intenzity');
 var line = document.querySelector('#line-path');
@@ -121,21 +122,38 @@ var rerenderOrbits = function rerenderOrbits() {
   orbits[5].setAttribute('r', 160838 / ratio);
   orbits[6].setAttribute('r', 321677 / ratio);
   orbits[7].setAttribute('r', 516981 / ratio);
+
+  if (realSunScale) {
+    sun.style.width = 160 / ratio;
+    sun.style.height = 160 / ratio;
+    sun.style.marginTop = 80 - 160 / ratio / 2;
+    sun.style.marginLeft = 80 - 160 / ratio / 2;
+  } else {
+    sun.style.width = 160;
+    sun.style.height = 160;
+    sun.style.marginTop = 0;
+    sun.style.marginLeft = 0;
+  }
 };
 
+rerenderOrbits();
 var zoomBtn = document.getElementById('zoom');
 var unzoomBtn = document.getElementById('unzoom');
 
 var zoom = function zoom() {
-  if (ratio - RATIO_STEP > 0) ratio -= RATIO_STEP;
-  rerenderOrbits();
-  updateData();
+  if (ratio - RATIO_STEP > 0) {
+    ratio -= RATIO_STEP;
+    rerenderOrbits();
+    updateData();
+  }
 };
 
 var unzoom = function unzoom() {
-  if (ratio - RATIO_STEP > 0) ratio += RATIO_STEP;
-  rerenderOrbits();
-  updateData();
+  if (ratio + RATIO_STEP > 0) {
+    ratio += RATIO_STEP;
+    rerenderOrbits();
+    updateData();
+  }
 };
 
 zoomBtn.addEventListener('click', function (e) {
@@ -153,4 +171,16 @@ container.addEventListener('mousewheel', function (e) {
   } else {
     zoom();
   }
+});
+var reset = document.getElementById('reset');
+reset.addEventListener('click', function (e) {
+  ratio = 15.4;
+  rerenderOrbits();
+  updateData();
+});
+var onetoone = document.getElementById('onetoone');
+onetoone.addEventListener('click', function (e) {
+  realSunScale = !realSunScale;
+  rerenderOrbits();
+  updateData();
 });

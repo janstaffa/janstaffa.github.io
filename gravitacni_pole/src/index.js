@@ -27,10 +27,11 @@ Array.from(inputs).map((input) => {
   input.dispatchEvent(myEvent);
 });
 
-let ratio = 1;
+let ratio = 15.4;
 const RATIO_STEP = 0.6;
+let realSunScale = false;
 
-const draggable = document.querySelector('.draggable');
+const draggable = document.querySelector('#earth');
 const distanceDisplay = document.querySelector('#distance');
 const intenzityDisplay = document.querySelector('#intenzity');
 
@@ -133,19 +134,37 @@ const rerenderOrbits = () => {
   orbits[5].setAttribute('r', 160838 / ratio);
   orbits[6].setAttribute('r', 321677 / ratio);
   orbits[7].setAttribute('r', 516981 / ratio);
+
+  if (realSunScale) {
+    sun.style.width = 160 / ratio;
+    sun.style.height = 160 / ratio;
+    sun.style.marginTop = 80 - 160 / ratio / 2;
+    sun.style.marginLeft = 80 - 160 / ratio / 2;
+  } else {
+    sun.style.width = 160;
+    sun.style.height = 160;
+    sun.style.marginTop = 0;
+    sun.style.marginLeft = 0;
+  }
 };
+rerenderOrbits();
+
 const zoomBtn = document.getElementById('zoom');
 const unzoomBtn = document.getElementById('unzoom');
 
 const zoom = () => {
-  if (ratio - RATIO_STEP > 0) ratio -= RATIO_STEP;
-  rerenderOrbits();
-  updateData();
+  if (ratio - RATIO_STEP > 0) {
+    ratio -= RATIO_STEP;
+    rerenderOrbits();
+    updateData();
+  }
 };
 const unzoom = () => {
-  if (ratio - RATIO_STEP > 0) ratio += RATIO_STEP;
-  rerenderOrbits();
-  updateData();
+  if (ratio + RATIO_STEP > 0) {
+    ratio += RATIO_STEP;
+    rerenderOrbits();
+    updateData();
+  }
 };
 zoomBtn.addEventListener('click', (e) => {
   zoom();
@@ -163,4 +182,18 @@ container.addEventListener('mousewheel', (e) => {
   } else {
     zoom();
   }
+});
+
+const reset = document.getElementById('reset');
+reset.addEventListener('click', (e) => {
+  ratio = 15.4;
+  rerenderOrbits();
+  updateData();
+});
+
+const onetoone = document.getElementById('onetoone');
+onetoone.addEventListener('click', (e) => {
+  realSunScale = !realSunScale;
+  rerenderOrbits();
+  updateData();
 });
