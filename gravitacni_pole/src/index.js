@@ -10,7 +10,7 @@ const calc = (distance) => {
   const realDistance = parseFloat(distance) * 1000;
   const output = G * (sunWeight / Math.pow(realDistance, 2));
   if (Number.isNaN(output)) {
-    return '<span style="color:red;">zadejte prosím číslo ( ͡° ͜ʖ ͡°)</span>';
+    return '<span style="color:red;">zadejte prosím číslo</span>';
   } else {
     return formatNumber(output.toFixed(6)) + ' N/kg';
   }
@@ -29,16 +29,16 @@ Array.from(inputs).map((input) => {
 
 let ratio = 15.4;
 const RATIO_STEP = 0.6;
-let realSunScale = false;
+let realScale = false;
 
-const draggable = document.querySelector('#earth');
+const earth = document.querySelector('#earth');
 const distanceDisplay = document.querySelector('#distance');
 const intenzityDisplay = document.querySelector('#intenzity');
 
 const line = document.querySelector('#line-path');
 const sun = document.querySelector('#sun');
-line.setAttribute('x1', draggable.offsetLeft + draggable.clientWidth / 2);
-line.setAttribute('y1', draggable.offsetTop + draggable.clientHeight / 2);
+line.setAttribute('x1', earth.offsetLeft + earth.clientWidth / 2);
+line.setAttribute('y1', earth.offsetTop + earth.clientHeight / 2);
 line.setAttribute('x2', sun.clientWidth / 2);
 line.setAttribute('y2', sun.clientHeight / 2);
 
@@ -51,7 +51,7 @@ const updateData = () => {
   let lineLength = Math.sqrt((x2 -= x1) * x2 + (y2 -= y1) * y2);
   lineLength = lineLength * 8704.375 * ratio;
   distanceDisplay.innerText = formatNumber(lineLength.toFixed(2)) + ' km';
-  draggable.setAttribute(
+  earth.setAttribute(
     'title',
     `Distance from sun: ${formatNumber(lineLength.toFixed(2))} km`
   );
@@ -100,7 +100,7 @@ const dragElement = (el) => {
       let lineLength = Math.sqrt((x2 -= x1) * x2 + (y2 -= y1) * y2);
       lineLength = lineLength * 8704.375 * ratio;
       distanceDisplay.innerText = formatNumber(lineLength.toFixed(2)) + ' km';
-      draggable.setAttribute(
+      earth.setAttribute(
         'title',
         `Distance from sun: ${formatNumber(lineLength.toFixed(2))} km`
       );
@@ -120,7 +120,7 @@ const dragElement = (el) => {
   el.onmousedown = dragMouseDown;
 };
 
-dragElement(draggable);
+dragElement(earth);
 
 const rerenderOrbits = () => {
   const svg = document.getElementById('svg');
@@ -135,11 +135,14 @@ const rerenderOrbits = () => {
   orbits[6].setAttribute('r', 321677 / ratio);
   orbits[7].setAttribute('r', 516981 / ratio);
 
-  if (realSunScale) {
+  if (realScale) {
     sun.style.width = 160 / ratio;
     sun.style.height = 160 / ratio;
     sun.style.marginTop = 80 - 160 / ratio / 2;
     sun.style.marginLeft = 80 - 160 / ratio / 2;
+
+    // earth.style.top = el.offsetTop - pos2 + 'px';
+    // earth.style.left = el.offsetLeft - pos1 + 'px';
   } else {
     sun.style.width = 160;
     sun.style.height = 160;
@@ -193,7 +196,7 @@ reset.addEventListener('click', (e) => {
 
 const onetoone = document.getElementById('onetoone');
 onetoone.addEventListener('click', (e) => {
-  realSunScale = !realSunScale;
+  realScale = !realScale;
   rerenderOrbits();
   updateData();
 });
