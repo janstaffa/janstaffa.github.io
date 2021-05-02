@@ -50,7 +50,7 @@ var updateData = function updateData() {
   var x2 = line.getAttribute('x2');
   var y2 = line.getAttribute('y2');
   var lineLength = Math.sqrt((x2 -= x1) * x2 + (y2 -= y1) * y2);
-  lineLength = lineLength * 8704.375 * ratio;
+  lineLength = (lineLength - 10) * 8704.375 * ratio;
   distanceDisplay.innerText = formatNumber(lineLength.toFixed(2)) + ' km';
   earth.setAttribute('title', "Distance from sun: ".concat(formatNumber(lineLength.toFixed(2)), " km"));
   intenzityDisplay.innerText = calc(lineLength);
@@ -90,7 +90,7 @@ var dragElement = function dragElement(el) {
       var x2 = line.getAttribute('x2');
       var y2 = line.getAttribute('y2');
       var lineLength = Math.sqrt((x2 -= x1) * x2 + (y2 -= y1) * y2);
-      lineLength = lineLength * 8704.375 * ratio;
+      lineLength = (lineLength - 10) * 8704.375 * ratio;
       distanceDisplay.innerText = formatNumber(lineLength.toFixed(2)) + ' km';
       earth.setAttribute('title', "Distance from sun: ".concat(formatNumber(lineLength.toFixed(2)), " km"));
       intenzityDisplay.innerText = calc(lineLength);
@@ -127,8 +127,7 @@ var rerenderOrbits = function rerenderOrbits() {
     sun.style.width = 160 / ratio;
     sun.style.height = 160 / ratio;
     sun.style.marginTop = 80 - 160 / ratio / 2;
-    sun.style.marginLeft = 80 - 160 / ratio / 2; // earth.style.top = el.offsetTop - pos2 + 'px';
-    // earth.style.left = el.offsetLeft - pos1 + 'px';
+    sun.style.marginLeft = 80 - 160 / ratio / 2;
   } else {
     sun.style.width = 160;
     sun.style.height = 160;
@@ -180,8 +179,15 @@ reset.addEventListener('click', function (e) {
   updateData();
 });
 var onetoone = document.getElementById('onetoone');
+var onetoone_on = document.getElementById('onetoone-on');
 onetoone.addEventListener('click', function (e) {
   realScale = !realScale;
   rerenderOrbits();
   updateData();
+
+  if (realScale) {
+    onetoone_on.innerText = 'zapnuto';
+  } else {
+    onetoone_on.innerText = 'vypnuto';
+  }
 });

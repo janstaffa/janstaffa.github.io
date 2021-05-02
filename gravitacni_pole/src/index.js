@@ -49,7 +49,7 @@ const updateData = () => {
   let y2 = line.getAttribute('y2');
 
   let lineLength = Math.sqrt((x2 -= x1) * x2 + (y2 -= y1) * y2);
-  lineLength = lineLength * 8704.375 * ratio;
+  lineLength = (lineLength - 10) * 8704.375 * ratio;
   distanceDisplay.innerText = formatNumber(lineLength.toFixed(2)) + ' km';
   earth.setAttribute(
     'title',
@@ -98,7 +98,7 @@ const dragElement = (el) => {
       let y2 = line.getAttribute('y2');
 
       let lineLength = Math.sqrt((x2 -= x1) * x2 + (y2 -= y1) * y2);
-      lineLength = lineLength * 8704.375 * ratio;
+      lineLength = (lineLength - 10) * 8704.375 * ratio;
       distanceDisplay.innerText = formatNumber(lineLength.toFixed(2)) + ' km';
       earth.setAttribute(
         'title',
@@ -192,8 +192,15 @@ reset.addEventListener('click', (e) => {
 });
 
 const onetoone = document.getElementById('onetoone');
+const onetoone_on = document.getElementById('onetoone-on');
 onetoone.addEventListener('click', (e) => {
   realScale = !realScale;
   rerenderOrbits();
   updateData();
+
+  if (realScale) {
+    onetoone_on.innerText = 'zapnuto';
+  } else {
+    onetoone_on.innerText = 'vypnuto';
+  }
 });

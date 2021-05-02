@@ -111,8 +111,11 @@
             user-select: none;
         }
 
-        .caption div {
+        .caption div:nth-child(1) {
             margin-top: 3px;
+        }
+
+        .caption div {
             padding: 5px;
             background-color: white;
             width: fit-content;
@@ -120,6 +123,7 @@
             font-size: 20px;
             display: flex;
             flex-direction: row;
+            align-items: center;
         }
 
         .caption div span {
@@ -134,7 +138,6 @@
 
         .control ion-icon {
             font-size: 30px;
-            margin: 0 2px;
             cursor: pointer;
         }
 
@@ -144,4 +147,29 @@
 
         #onetoone {
             font-size: 22px;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: rgba(0, 0, 0, .8);
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -60px;
+            font-size: 16px;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
         }

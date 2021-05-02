@@ -75,10 +75,22 @@
         <div class="caption">
             <div>
                 <div class="control">
-                    <ion-icon name="sunny-outline" id="onetoone" title="One to one sun scale"></ion-icon>
-                    <ion-icon name="refresh-circle-outline" id="reset" title="Reset playground"></ion-icon>
-                    <ion-icon name="add-circle-outline" id="zoom" title="Zoom in"></ion-icon>
-                    <ion-icon name="remove-circle-outline" id="unzoom" title="Zoom out"></ion-icon>
+                    <div class="tooltip">
+                        <ion-icon name="sunny-outline" id="onetoone"></ion-icon>
+                        <span class="tooltiptext">Reálná velikost slunce - <span id="onetoone-on">vypnuto</span></span>
+                    </div>
+                    <div class="tooltip">
+                        <ion-icon name="refresh-circle-outline" id="reset"></ion-icon>
+                        <span class="tooltiptext">Resetovat simulaci</span>
+                    </div>
+                    <div class="tooltip">
+                        <ion-icon name="add-circle-outline" id="zoom"></ion-icon>
+                        <span class="tooltiptext">Přiblížit</span>
+                    </div>
+                    <div class="tooltip">
+                        <ion-icon name="remove-circle-outline" id="unzoom"></ion-icon>
+                        <span class="tooltiptext">Oddálit</span>
+                    </div>
                 </div>
                 <div>
                     Vzdálenost:&nbsp; <span id="distance"></span> / Intenzita g. pole:&nbsp; <span
@@ -94,14 +106,14 @@
                     class="draggable obj" id="earth" />
                 <svg id="svg">
                     <line id="line-path" />
-                    <circle cx="80" cy="80" r="6663" stroke="white" stroke-width="2" fill="transparent" />
-                    <circle cx="80" cy="80" r="12407" stroke="white" stroke-width="2" fill="transparent" />
-                    <circle cx="80" cy="80" r="17186" stroke="white" stroke-width="2" fill="transparent" />
-                    <circle cx="80" cy="80" r="26193" stroke="white" stroke-width="2" fill="transparent" />
-                    <circle cx="80" cy="80" r="89380" stroke="white" stroke-width="2" fill="transparent" />
-                    <circle cx="80" cy="80" r="160838" stroke="white" stroke-width="2" fill="transparent" />
-                    <circle cx="80" cy="80" r="321677" stroke="white" stroke-width="2" fill="transparent" />
-                    <circle cx="80" cy="80" r="516981" stroke="white" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="6663" stroke="#ab733a" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="12407" stroke="#622a05" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="17186" stroke="#435d97" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="26193" stroke="#773922" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="89380" stroke="#c0a05f" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="160838" stroke="#ddd9b2" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="321677" stroke="#71a4a6" stroke-width="2" fill="transparent" />
+                    <circle cx="80" cy="80" r="516981" stroke="#202e6f" stroke-width="2" fill="transparent" />
                 </svg>
             </div>
         </div>
