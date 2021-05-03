@@ -155,7 +155,6 @@ const unzoomBtn = document.getElementById('unzoom');
 const zoom = () => {
   if (ratio - RATIO_STEP > 0) {
     ratio -= RATIO_STEP;
-    RATIO_STEP -= 0.6;
     rerenderOrbits();
     updateData();
   }
@@ -163,7 +162,6 @@ const zoom = () => {
 const unzoom = () => {
   if (ratio + RATIO_STEP > 0) {
     ratio += RATIO_STEP;
-    RATIO_STEP += 0.6;
     rerenderOrbits();
     updateData();
   }
