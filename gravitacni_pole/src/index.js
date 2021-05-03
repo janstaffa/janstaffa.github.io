@@ -28,7 +28,7 @@ Array.from(inputs).map((input) => {
 });
 
 let ratio = 15.4;
-const RATIO_STEP = 0.6;
+let RATIO_STEP = 0.6;
 let realScale = false;
 
 const earth = document.querySelector('#earth');
@@ -155,6 +155,7 @@ const unzoomBtn = document.getElementById('unzoom');
 const zoom = () => {
   if (ratio - RATIO_STEP > 0) {
     ratio -= RATIO_STEP;
+    RATIO_STEP -= 0.6;
     rerenderOrbits();
     updateData();
   }
@@ -162,6 +163,7 @@ const zoom = () => {
 const unzoom = () => {
   if (ratio + RATIO_STEP > 0) {
     ratio += RATIO_STEP;
+    RATIO_STEP += 0.6;
     rerenderOrbits();
     updateData();
   }
