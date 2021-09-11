@@ -1,0 +1,40 @@
+* {
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   padding: 10px;
+}
+
+details {
+   width: 250px;
+   height: auto;
+   padding: 10px;
+   cursor: pointer;
+   border: 1px solid #d0d0d0;
+   border-radius: 8px;
+   background-color: #f2f2f2;
+}
+
+details summary {
+   line-height: 30px;
+}
+
+ul {
+   list-style-type: none;
+}
+
+hr {
+   margin: 5px 0;
+}
+
+a {
+   color: black;
+   text-decoration: none;
+}
+
+a:hover {
+   color: #181818;
+   text-decoration: underline;
+}
