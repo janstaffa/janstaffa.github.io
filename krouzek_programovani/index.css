@@ -1,0 +1,59 @@
+/* import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+body {
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 20px;
+}
+
+main {
+    width: 600px;
+}
+
+div {
+    margin: 5px;
+}
+
+p {
+    margin: 0;
+}
+
+h1,
+h3 {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+.center-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+img {
+    width: 90%;
+}
+
+@media (max-width: 650px) {
+    main {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}
